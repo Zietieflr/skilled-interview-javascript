@@ -27,14 +27,6 @@ const exampleJson = `{
 }`;
 
 // Take 2
-const exampleJson = `{
-  "first-name": "Jeff",
-  "last-name": "Green",
-  "city-and-state": "Boston, MA",
-  "zip": "12345-1234"
-}`;
-
-// Take 2
 function transformKebabCaseToCamelCase(data) {
   const dataObject = JSON.parse(data);
   let camelCaseData = {};
@@ -46,18 +38,13 @@ function transformKebabCaseToCamelCase(data) {
 
 function transformKey(key) {
   let camelCaseKey = "";
-  let word = "";
   for (let i = 0; i < key.length; i++) {
-    if (key.charAt(i) === "-") {
-      camelCaseKey += word
-      word = "";
-    } else if (key.charAt(i -1) === "-") {
-      word += key.charAt(i).toUpperCase()
-    }else {
-      word += key.charAt(i);
+    if (key.charAt(i - 1) === "-") {
+      camelCaseKey += key.charAt(i).toUpperCase();
+    } else if (key.charAt(i) !== "-") {
+      camelCaseKey += key.charAt(i);
     }
   }
-  camelCaseKey += word
   return camelCaseKey;
 }
 
